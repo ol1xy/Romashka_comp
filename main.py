@@ -1,7 +1,7 @@
 from flask import Flask
-from Storage import storage
+from Src.Storage.storage import storage
 import os
-from Logics import reporting
+from Src.Logics.data_factory import data_factory
 app = Flask(__name__)
 
 @app.route("/api/report/<storage_key>/<format>", methods=["GET"])
@@ -26,7 +26,7 @@ def get_report(storage_key: str, format: str):
 
 
     response_type = app.response_class(
-        response=f"{reporting.create(reporting(), format, 'Сюда нужно передать данные')}",
+        response=f"{data_factory.create(data_factory(), format, 'Сюда нужно передать данные')}",
         status=200,
         mimetype="application/text"
     )
